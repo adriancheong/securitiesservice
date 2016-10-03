@@ -13,16 +13,7 @@ namespace SecuritiesService
     {
         public static void Main(string[] args)
         {
-            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost");
-
-            IDatabase db = redis.GetDatabase();
-            if (db.StringSet("testKey", "testValue"))
-            {
-                var val = db.StringGet("testKey");
-                Console.WriteLine(val);
-            }
-            else
-                Console.WriteLine("Did not manage to connect to Redis");
+            redis();
 
             var host = new WebHostBuilder()
                 .UseKestrel()
@@ -33,6 +24,20 @@ namespace SecuritiesService
                 .Build();
 
             host.Run();
+        }
+
+        private static async void redis()
+        {
+            ConnectionMultiplexer redis = await ConnectionMultiplexer.ConnectAsync("localhost");
+
+            IDatabase db = redis.GetDatabase();
+            if (db.StringSet("testKey", "testValue"))
+            {
+                var val = db.StringGet("testKey");
+                Console.WriteLine(val);
+            }
+            else
+                Console.WriteLine("Did not manage to connect to Redis");
         }
     }
 }
