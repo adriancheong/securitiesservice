@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D5BE2686-74D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D95CACFF-3981-4090-9C57-69A660BC0D3A}"
 	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
 		global.json = global.json
 	EndProjectSection
 EndProject

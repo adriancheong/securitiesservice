@@ -6,19 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SecuritiesService.Controllers
 {
-    [Route("api/[controller]")]
-    public class ValuesController : Controller
+    [Route("[controller]")]
+    public class SecurityController : Controller
     {
-        // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public string Get(int securityId, string property)
         {
-            return new string[] { "value1", "value2" };
+            return "Getting Property " + property + " of security ID " + securityId;
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public string Get(int securityId)
         {
             return "value";
         }
