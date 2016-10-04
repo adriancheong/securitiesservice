@@ -32,7 +32,7 @@ namespace SecuritiesService
             {
                 EndPoints =
                 {
-                    { "128.199.219.151", 6379 }
+                    { "MYREDIS_PORT_6379_TCP_ADDR", 6379 }
                 }
                 //KeepAlive = 180,
                 //Password = password,
