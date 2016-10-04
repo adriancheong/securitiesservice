@@ -26,7 +26,7 @@ namespace SecuritiesService
             host.Run();
         }
 
-        private static async void redis()
+        private static void redis()
         {
             var configurationOptions = new ConfigurationOptions
             {
