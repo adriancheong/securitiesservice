@@ -28,7 +28,20 @@ namespace SecuritiesService
 
         private static async void redis()
         {
-            ConnectionMultiplexer redis = await ConnectionMultiplexer.ConnectAsync("localhost");
+            var configurationOptions = new ConfigurationOptions
+            {
+                EndPoints =
+                {
+                    { "myredis", 6379 }
+                }
+                //KeepAlive = 180,
+                //Password = password,
+                //DefaultVersion = new Version("2.8.5"),
+                // Needed for cache clear
+                //AllowAdmin = true
+            };
+
+            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(configurationOptions);
 
             IDatabase db = redis.GetDatabase();
             if (db.StringSet("testKey", "testValue"))
