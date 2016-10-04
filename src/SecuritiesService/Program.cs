@@ -26,13 +26,13 @@ namespace SecuritiesService
             host.Run();
         }
 
-        private static async void redis()
+        private static void redis()
         {
             var configurationOptions = new ConfigurationOptions
             {
                 EndPoints =
                 {
-                    { "myredis", 6379 }
+                    { "128.199.219.151", 6379 }
                 }
                 //KeepAlive = 180,
                 //Password = password,
@@ -41,7 +41,7 @@ namespace SecuritiesService
                 //AllowAdmin = true
             };
 
-            ConnectionMultiplexer redis = await ConnectionMultiplexer.ConnectAsync(configurationOptions);
+            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(configurationOptions);
 
             IDatabase db = redis.GetDatabase();
             if (db.StringSet("testKey", "testValue"))
