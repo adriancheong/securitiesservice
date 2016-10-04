@@ -26,7 +26,7 @@ namespace SecuritiesService
             host.Run();
         }
 
-        private static void redis()
+        private static async void redis()
         {
             var configurationOptions = new ConfigurationOptions
             {
@@ -41,7 +41,7 @@ namespace SecuritiesService
                 //AllowAdmin = true
             };
 
-            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(configurationOptions);
+            ConnectionMultiplexer redis = await ConnectionMultiplexer.ConnectAsync(configurationOptions);
 
             IDatabase db = redis.GetDatabase();
             if (db.StringSet("testKey", "testValue"))
