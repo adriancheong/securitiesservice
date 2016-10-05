@@ -14,12 +14,14 @@ namespace SecuritiesService
 {
     public class Program
     {
-        private static readonly string REDIS_ADDRESS_ENV_PROPERTY_KEY = "MYREDIS_PORT_6379_TCP_ADDR";
-        private static readonly string REDIS_PORT_ENV_PROPERTY_KEY = "MYREDIS_PORT_6379_TCP_PORT";
+        private static readonly string REDIS_ALIAS = "MYREDIS";
+        private static readonly string REDIS_ADDRESS_ENV_PROPERTY_KEY = REDIS_ALIAS + "_PORT_6379_TCP_ADDR";
+        private static readonly string REDIS_PORT_ENV_PROPERTY_KEY = REDIS_ALIAS + "_PORT_6379_TCP_PORT";
+        private static readonly int NUMBER_OF_SECURITIES_TO_CREATE = 1000;
 
         public static void Main(string[] args)
         {
-            redis();
+            initAndPopulateRedisStore();
 
             var host = new WebHostBuilder()
                 .UseKestrel()
@@ -42,10 +44,8 @@ namespace SecuritiesService
             
         }
 
-        private static void redis()
+        private static void initAndPopulateRedisStore()
         {
-            IList<Security> securities = SecuritiesGenerator.GenerateRandomSecurities(10);
-
             var configurationOptions = new ConfigurationOptions
             {
                 EndPoints =
@@ -58,20 +58,10 @@ namespace SecuritiesService
                 // Needed for cache clear
                 //AllowAdmin = true
             };
-
             ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(configurationOptions);
 
             IDatabase db = redis.GetDatabase();
-            if (db.StringSet("testKey", "testValue"))
-            {
-                var val = db.StringGet("testKey");
-                Console.WriteLine(val);
-            }
-            else
-                Console.WriteLine("Did not manage to connect to Redis");
-
-
-            
+            IList<Security> securities = SecuritiesGenerator.GenerateRandomSecurities(NUMBER_OF_SECURITIES_TO_CREATE);
             foreach (Security security in securities)
             {
                 db.HashSet(security.SecurityId, GenerateRedisHash<Security>(security));
