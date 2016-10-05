@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
 using StackExchange.Redis;
+using System.Reflection;
+using SecuritiesService.Models;
+using SecuritiesService.Helpers;
 
 namespace SecuritiesService
 {
@@ -41,6 +44,8 @@ namespace SecuritiesService
 
         private static void redis()
         {
+            IList<Security> securities = SecuritiesGenerator.GenerateRandomSecurities(10);
+
             var configurationOptions = new ConfigurationOptions
             {
                 EndPoints =
@@ -66,9 +71,20 @@ namespace SecuritiesService
                 Console.WriteLine("Did not manage to connect to Redis");
 
 
-            HashEntry he = new HashEntry("Price", 123);
-            db.HashSet("security", new HashEntry[] { he });
+            
+            foreach (Security security in securities)
+            {
+                db.HashSet(security.SecurityId, GenerateRedisHash<Security>(security));
+            }
+        }
 
+        private static HashEntry[] GenerateRedisHash<T>(T obj)
+        {
+            var props = typeof(T).GetProperties();
+            var hash = new HashEntry[props.Count()];
+            for (int i = 0; i < props.Count(); i++)
+                hash[i] = new HashEntry(props[i].Name, props[i].GetValue(obj).ToString());
+            return hash;
         }
     }
 }
