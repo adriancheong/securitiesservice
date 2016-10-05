@@ -21,7 +21,7 @@ namespace SecuritiesService
 
         public static void Main(string[] args)
         {
-            initAndPopulateRedisStore();
+            //initAndPopulateRedisStore();
 
             var host = new WebHostBuilder()
                 .UseKestrel()
