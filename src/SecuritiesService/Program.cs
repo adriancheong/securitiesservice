@@ -11,9 +11,12 @@ namespace SecuritiesService
 {
     public class Program
     {
+        private static readonly string REDIS_ADDRESS_ENV_PROPERTY_KEY = "MYREDIS_PORT_6379_TCP_ADDR";
+        private static readonly string REDIS_PORT_ENV_PROPERTY_KEY = "MYREDIS_PORT_6379_TCP_PORT";
+
         public static void Main(string[] args)
         {
-            env();
+            redis();
 
             var host = new WebHostBuilder()
                 .UseKestrel()
@@ -42,7 +45,7 @@ namespace SecuritiesService
             {
                 EndPoints =
                 {
-                    { "128.199.219.151", 6379 }
+                    { Environment.GetEnvironmentVariable(REDIS_ADDRESS_ENV_PROPERTY_KEY), int.Parse(Environment.GetEnvironmentVariable(REDIS_PORT_ENV_PROPERTY_KEY)) }
                 }
                 //KeepAlive = 180,
                 //Password = password,
