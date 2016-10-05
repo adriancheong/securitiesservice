@@ -64,6 +64,11 @@ namespace SecuritiesService
             }
             else
                 Console.WriteLine("Did not manage to connect to Redis");
+
+
+            HashEntry he = new HashEntry("Price", 123);
+            db.HashSet("security", new HashEntry[] { he });
+
         }
     }
 }
