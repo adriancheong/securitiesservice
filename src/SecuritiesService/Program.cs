@@ -45,7 +45,7 @@ namespace SecuritiesService
             {
                 EndPoints =
                 {
-                    { Environment.GetEnvironmentVariable(REDIS_ADDRESS_ENV_PROPERTY_KEY), int.Parse(Environment.GetEnvironmentVariable(REDIS_PORT_ENV_PROPERTY_KEY)) }
+                    { Environment.GetEnvironmentVariable("MYREDIS_PORT") }
                 }
                 //KeepAlive = 180,
                 //Password = password,
