@@ -13,7 +13,7 @@ namespace SecuritiesService
     {
         public static void Main(string[] args)
         {
-            redis();
+            env();
 
             var host = new WebHostBuilder()
                 .UseKestrel()
@@ -26,13 +26,23 @@ namespace SecuritiesService
             host.Run();
         }
 
+        private static void env()
+        {
+            Console.WriteLine(Environment.MachineName);
+            foreach (string key in Environment.GetEnvironmentVariables().Keys)
+            {
+                Console.WriteLine(key + " : " + Environment.GetEnvironmentVariable(key));
+            }
+            
+        }
+
         private static void redis()
         {
             var configurationOptions = new ConfigurationOptions
             {
                 EndPoints =
                 {
-                    { "myredis", 6379 }
+                    { "128.199.219.151", 6379 }
                 }
                 //KeepAlive = 180,
                 //Password = password,
