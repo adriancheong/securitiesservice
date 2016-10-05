@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SecuritiesService.Helpers;
+using StackExchange.Redis;
 
 namespace SecuritiesService.Controllers
 {
@@ -10,13 +12,15 @@ namespace SecuritiesService.Controllers
     public class SecurityController : Controller
     {
         [HttpGet]
-        public string Get(int securityId, string property)
+        public object Get(string securityId, string property)
         {
-            return "Getting Property " + property + " of security ID " + securityId;
+            IDatabase redisdb = RedisFactory.GetRedisDatabase();
+            return redisdb.HashGet(securityId, property);
+            //return "Getting Property " + property + " of security ID " + securityId;
         }
 
         [HttpGet("{id}")]
-        public string Get(int securityId)
+        public string Get(string securityId)
         {
             return "value";
         }

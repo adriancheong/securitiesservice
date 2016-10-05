@@ -21,6 +21,8 @@
       "launchBrowser": true,
       "launchUrl": "http://localhost:16555/Security?securityId=12345&property=country",
       "environmentVariables": {
+        "MYREDIS_PORT_6379_TCP_ADDR": "128.199.219.151",
+        "MYREDIS_PORT_6379_TCP_PORT": "6379",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
