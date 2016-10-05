@@ -17,7 +17,7 @@ namespace SecuritiesService
         private static readonly string REDIS_ALIAS = "MYREDIS";
         private static readonly string REDIS_ADDRESS_ENV_PROPERTY_KEY = REDIS_ALIAS + "_PORT_6379_TCP_ADDR";
         private static readonly string REDIS_PORT_ENV_PROPERTY_KEY = REDIS_ALIAS + "_PORT_6379_TCP_PORT";
-        private static readonly int NUMBER_OF_SECURITIES_TO_CREATE = 1000;
+        private static readonly int NUMBER_OF_SECURITIES_TO_CREATE = 1000000;
 
         public static void Main(string[] args)
         {
