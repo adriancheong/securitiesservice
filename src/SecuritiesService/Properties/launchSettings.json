@@ -19,7 +19,7 @@
     "SecuritiesService": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:16555/Security?securityId=12345&property=country",
+      "launchUrl": "http://localhost:16555/Security?securityId=ISIN0&property=Owner",
       "environmentVariables": {
         "MYREDIS_PORT_6379_TCP_ADDR": "128.199.219.151",
         "MYREDIS_PORT_6379_TCP_PORT": "6379",

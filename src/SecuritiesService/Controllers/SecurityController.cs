@@ -15,14 +15,16 @@ namespace SecuritiesService.Controllers
         public object Get(string securityId, string property)
         {
             IDatabase redisdb = RedisFactory.GetRedisDatabase();
-            return redisdb.HashGet(securityId, property);
-            //return "Getting Property " + property + " of security ID " + securityId;
+            var ret = redisdb.HashGet(securityId, property);
+            return ret.ToString();
         }
 
-        [HttpGet("{id}")]
-        public string Get(string securityId)
+        [HttpGet("{securityId}")]
+        public object Get(string securityId)
         {
-            return "value";
+            IDatabase redisdb = RedisFactory.GetRedisDatabase();
+            var ret = redisdb.HashGetAll(securityId);
+            return ret;
         }
 
         // POST api/values
