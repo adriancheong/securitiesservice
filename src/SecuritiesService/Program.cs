@@ -43,16 +43,18 @@ namespace SecuritiesService
         {
             var configurationOptions = new ConfigurationOptions
             {
-                EndPoints =
-                {
-                    { Environment.GetEnvironmentVariable("MYREDIS_PORT") }
-                }
+                //EndPoints =
+                //{
+                //    { Environment.GetEnvironmentVariable("MYREDIS_PORT") }
+                //}
                 //KeepAlive = 180,
                 //Password = password,
                 //DefaultVersion = new Version("2.8.5"),
                 // Needed for cache clear
                 //AllowAdmin = true
             };
+
+            configurationOptions.EndPoints.Add("172.17.0.2:6379");
 
             ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(configurationOptions);
 
