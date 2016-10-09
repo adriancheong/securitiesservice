@@ -24,10 +24,19 @@ namespace SecuritiesService.Controllers
         public object Get(string securityId)
         {
             Console.WriteLine("Securities Service is called to retrieve Security ID: " + securityId);
-            IDatabase redisdb = RedisFactory.GetRedisDatabase();
-            var ret = redisdb.HashGetAll(securityId).ToStringDictionary();
-            Console.WriteLine("Retrieved value: " + ret);
-            return ret;
+            try
+            {
+                IDatabase redisdb = RedisFactory.GetRedisDatabase();
+                var ret = redisdb.HashGetAll(securityId).ToStringDictionary();
+                Console.WriteLine("Retrieved value: " + ret);
+                return ret;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception encountered: " + e.Message);
+                return null;
+            }
+            
         }
 
         // POST api/values
