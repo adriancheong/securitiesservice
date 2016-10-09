@@ -14,6 +14,7 @@ namespace SecuritiesService.Controllers
         [HttpGet]
         public object Get(string securityId, string property)
         {
+            Console.WriteLine("Securities Service is called to retrieve Property: {0} of Security ID: {1}", property, securityId);
             IDatabase redisdb = RedisFactory.GetRedisDatabase();
             var ret = redisdb.HashGet(securityId, property);
             return ret.ToString();
@@ -22,6 +23,7 @@ namespace SecuritiesService.Controllers
         [HttpGet("{securityId}")]
         public object Get(string securityId)
         {
+            Console.WriteLine("Securities Service is called to retrieve Security ID: " + securityId);
             IDatabase redisdb = RedisFactory.GetRedisDatabase();
             var ret = redisdb.HashGetAll(securityId);
             return ret.ToStringDictionary();
