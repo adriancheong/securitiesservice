@@ -24,7 +24,7 @@ namespace SecuritiesService.Controllers
         {
             IDatabase redisdb = RedisFactory.GetRedisDatabase();
             var ret = redisdb.HashGetAll(securityId);
-            return ret;
+            return ret.ToStringDictionary();
         }
 
         // POST api/values
