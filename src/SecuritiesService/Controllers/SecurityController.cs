@@ -25,8 +25,9 @@ namespace SecuritiesService.Controllers
         {
             Console.WriteLine("Securities Service is called to retrieve Security ID: " + securityId);
             IDatabase redisdb = RedisFactory.GetRedisDatabase();
-            var ret = redisdb.HashGetAll(securityId);
-            return ret.ToStringDictionary();
+            var ret = redisdb.HashGetAll(securityId).ToStringDictionary();
+            Console.WriteLine("Retrieved value: " + ret);
+            return ret;
         }
 
         // POST api/values
