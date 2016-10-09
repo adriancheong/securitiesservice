@@ -5,9 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
-using StackExchange.Redis;
-using SecuritiesService.Models;
-using SecuritiesService.Helpers;
 
 namespace SecuritiesService
 {
