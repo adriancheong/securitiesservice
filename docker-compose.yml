@@ -5,8 +5,8 @@ services:
     links:
       - redis
     environment:
-      "REDIS_PORT_6379_TCP_ADDR": "redis"
-      "REDIS_PORT_6379_TCP_PORT": "6379"
+      - REDIS_PORT_6379_TCP_ADDR=redis
+      - REDIS_PORT_6379_TCP_PORT=6379
     ports:
       - "16555:16555"
   redis:
