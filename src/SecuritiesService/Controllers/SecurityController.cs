@@ -39,6 +39,39 @@ namespace SecuritiesService.Controllers
             
         }
 
+        [HttpGet("Compute/{securityId}")]
+        public object Compute(string securityId)
+        {
+            Console.WriteLine("Securities Service is called to compute Security ID: " + securityId);
+            try
+            {
+                IDatabase redisdb = RedisFactory.GetRedisDatabase();
+                double valuation = (double)redisdb.HashGet(securityId, "Valuation");
+                Console.WriteLine("Retrieved value from DB: " + valuation);
+                for (int i = 0; i < 10000000; i++)
+                {
+                    valuation = Math.Sqrt(Math.Pow(valuation, 2));
+                }
+                
+                return valuation;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception encountered: " + e.Message);
+                return null;
+            }
+        }
+
+        [HttpGet("Sleep/{length}")]
+        public object Sleep(int length)
+        {
+            Console.WriteLine("Securities Service is called to Sleep " + length);
+            System.Threading.Thread.Sleep(length);
+            Console.WriteLine("Securities Service is done sleeping");
+            return "Done Sleeping";
+        }
+
+
         // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)
