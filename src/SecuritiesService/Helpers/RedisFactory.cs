@@ -8,7 +8,7 @@ namespace SecuritiesService.Helpers
 {
     public class RedisFactory
     {
-        private static readonly string REDIS_ALIAS = "MYREDIS";
+        private static readonly string REDIS_ALIAS = "REDIS";
         private static readonly string REDIS_ADDRESS_ENV_PROPERTY_KEY = REDIS_ALIAS + "_PORT_6379_TCP_ADDR";
         private static readonly string REDIS_PORT_ENV_PROPERTY_KEY = REDIS_ALIAS + "_PORT_6379_TCP_PORT";
         private static IDatabase redisDatabase;

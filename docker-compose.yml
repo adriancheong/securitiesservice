@@ -1,0 +1,17 @@
+version: '2'
+services:
+  securitiesservice:
+    build: .
+    links:
+      - redis
+    environment:
+      - REDIS_PORT_6379_TCP_ADDR=redis
+      - REDIS_PORT_6379_TCP_PORT=6379
+    ports:
+      - "16555:16555"
+  redis:
+    image: redis
+    volumes:
+      - "/root/redis:/data"
+    ports:
+      - "6379:6379"
