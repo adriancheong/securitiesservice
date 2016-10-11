@@ -45,14 +45,12 @@ namespace SecuritiesService.Controllers
             Console.WriteLine("Securities Service is called to compute Security ID: " + securityId);
             try
             {
-                IDatabase redisdb = RedisFactory.GetRedisDatabase();
-                double valuation = (double)redisdb.HashGet(securityId, "Valuation");
-                Console.WriteLine("Retrieved value from DB: " + valuation);
+                double valuation = (new Random()).NextDouble();
                 for (int i = 0; i < 10000000; i++)
                 {
                     valuation = Math.Sqrt(Math.Pow(valuation, 2));
                 }
-                
+                Console.WriteLine("Finished Computing. Valuation: " + valuation);
                 return valuation;
             }
             catch (Exception e)
