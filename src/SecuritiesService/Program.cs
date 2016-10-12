@@ -17,7 +17,7 @@ namespace SecuritiesService
 
             var host = new WebHostBuilder()
                 .UseKestrel()
-                .UseUrls("http://*:16555/")
+                .UseUrls("http://*:8080/")
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
