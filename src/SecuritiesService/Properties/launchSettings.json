@@ -19,8 +19,8 @@
     "SecuritiesService": {
       "commandName": "Project",
       "launchBrowser": true,
-      //"launchUrl": "http://localhost:8080/Security?securityId=ISIN0&property=Owner",
-      "launchUrl": "http://localhost:8080/Security/ISIN0",
+      //"launchUrl": "http://localhost:16555/Security?securityId=ISIN0&property=Owner",
+      "launchUrl": "http://localhost:16555/Security/ISIN0",
       "environmentVariables": {
         "REDIS_PORT_6379_TCP_ADDR": "128.199.219.151",
         "REDIS_PORT_6379_TCP_PORT": "6379",

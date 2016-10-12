@@ -8,7 +8,7 @@ services:
       - REDIS_PORT_6379_TCP_ADDR=redis
       - REDIS_PORT_6379_TCP_PORT=6379
     ports:
-      - "8080:8080"
+      - "16555:16555"
   redis:
     image: redis
     volumes:
