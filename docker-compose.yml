@@ -9,6 +9,10 @@ services:
       - REDIS_PORT_6379_TCP_PORT=6379
     ports:
       - "16555:16555"
+  securitiespopulater:
+    image: adriancheong/securitiespopulater
+    links:
+      - redis
   redis:
     image: redis
     volumes:
