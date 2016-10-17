@@ -1,6 +1,6 @@
 version: '2'
 services:
-  securitiesservice:
+  securitiesservicefull:
     build: .
     links:
       - redis
